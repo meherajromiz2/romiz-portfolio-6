@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROMIZ — Skills</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --orange: #F5A623;
+    --dark: #1A1A1A;
+    --light: #F7F5F0;
+    --gray: #888;
+  }
+
+  body {
+    background: var(--light);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* LOGO TOP */
+  .top-logo {
+    text-align: center;
+    padding: 28px 0 0 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--dark);
+    letter-spacing: 2px;
+  }
+  .top-logo span { color: var(--orange); }
+
+  /* HERO */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 60px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.7; }
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 50px;
+    max-width: 1100px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-left { animation: fadeLeft 0.8s ease both; }
+
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .hello-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1.5px solid rgba(0,0,0,0.1);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: var(--dark);
+    margin-bottom: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    animation: fadeLeft 0.8s 0.1s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4vw, 54px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 12px;
+    animation: fadeLeft 0.8s 0.2s ease both;
+  }
+
+  .hero-title .name {
+    color: var(--orange);
+    position: relative;
+  }
+
+  .hero-title .name::after {
+    content: '';
+    position: absolute;
+    bottom: 2px; left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: underline 0.6s 1s ease forwards;
+  }
+
+  @keyframes underline { to { transform: scaleX(1); } }
+
+  .hero-subtitle {
+    font-size: 16px;
+    color: var(--gray);
+    font-weight: 300;
+    margin-bottom: 28px;
+    line-height: 1.5;
+    animation: fadeLeft 0.8s 0.3s ease both;
+  }
+
+  .testimonial {
+    background: white;
+    border-radius: 16px;
+    padding: 16px 20px;
+    border-left: 3px solid var(--orange);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    max-width: 300px;
+    animation: fadeLeft 0.8s 0.4s ease both;
+  }
+
+  .testimonial p {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .testimonial .author {
+    font-size: 11px;
+    color: var(--orange);
+    font-weight: 500;
+    margin-top: 6px;
+    font-style: normal;
+  }
+
+  /* CENTER IMAGE */
+  .hero-center {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .orange-circle {
+    width: 300px;
+    height: 300px;
+    background: var(--orange);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile-img {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 330px;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  /* FLOATING BADGES */
+  .badge {
+    position: absolute;
+    background: var(--dark);
+    color: white;
+    border-radius: 50px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    animation: floatBadge 3s ease-in-out infinite;
+  }
+
+  .badge:nth-child(2) { animation-delay: 0.5s; }
+  .badge:nth-child(3) { animation-delay: 1s; }
+  .badge:nth-child(4) { animation-delay: 1.5s; }
+  .badge:nth-child(5) { animation-delay: 2s; }
+
+  @keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .badge-1 { top: 10px; left: -80px; }
+  .badge-2 { top: 110px; left: -95px; }
+  .badge-3 { top: 10px; right: -85px; }
+  .badge-4 { top: 140px; right: -75px; }
+  .badge-5 { bottom: 30px; right: -95px; }
+
+  /* RIGHT STATS */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    animation: fadeRight 0.8s 0.3s ease both;
+  }
+
+  @keyframes fadeRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .stat-card {
+    background: white;
+    border-radius: 18px;
+    padding: 18px 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  .skills-card {
+    background: var(--dark);
+    border-radius: 18px;
+    padding: 18px 22px;
+  }
+
+  .skills-card h4 {
+    color: white;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.6;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+  .skill-tag {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border-radius: 50px;
+    padding: 5px 12px;
+    font-size: 11px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .skill-tag.highlight {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: var(--dark);
+    font-weight: 600;
+  }
+
+  /* BUTTONS */
+  .btn-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+    animation: fadeLeft 0.8s 0.5s ease both;
+  }
+
+  .btn {
+    padding: 12px 26px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: var(--dark);
+    box-shadow: 0 4px 16px rgba(245,166,35,0.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(245,166,35,0.5);
+  }
+
+  .btn-whatsapp {
+    background: #25D366;
+    color: white;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+  }
+
+  .btn-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.5);
+    background: #20ba5a;
+  }
+
+  /* ===== STATS SLIDER ===== */
+  .stats-bar {
+    background: var(--dark);
+    padding: 28px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .stats-track {
+    display: flex;
+    animation: slideStats 18s linear infinite;
+    width: max-content;
+  }
+
+  .stats-track:hover { animation-play-state: paused; }
+
+  @keyframes slideStats {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 48px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    flex-shrink: 0;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-spark {
+    color: var(--orange);
+    font-size: 22px;
+  }
+
+  .stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+  }
+
+  .stat-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 3px;
+  }
+
+  /* ===== SKILLS SECTION ===== */
+  .skills-section {
+    padding: 50px 60px;
+    background: var(--light);
+  }
+
+  .skills-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .skills-section h2 span { color: var(--orange); }
+
+  .skills-subtitle {
+    text-align: center;
+    color: var(--gray);
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .skill-category {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s;
+  }
+
+  .skill-category:hover { transform: translateY(-4px); }
+
+  .skill-category h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .skill-category h3 .cat-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--orange);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .skill-pill {
+    background: var(--light);
+    color: var(--dark);
+    border-radius: 50px;
+    padding: 5px 12px;
+    font-size: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .skill-pill.hot {
+    background: rgba(245,166,35,0.12);
+    border-color: var(--orange);
+    color: #b07800;
+    font-weight: 600;
+  }
+
+</style>
+</head>
+<body>
+<!-- SKILLS SECTION -->
+<section class="skills-section">
+  <h2>My <span>Skills</span></h2>
+  <p class="skills-subtitle">Trained across 600+ hours covering design, marketing, freelancing & AI</p>
+  <div class="skills-grid">
+
+    <div class="skill-category">
+      <h3><div class="cat-icon">🎨</div> Graphic Design</h3>
+      <div class="skill-list">
+        <span class="skill-pill hot">Adobe Illustrator</span>
+        <span class="skill-pill hot">Adobe Photoshop</span>
+        <span class="skill-pill hot">Canva</span>
+        <span class="skill-pill">Logo Design</span>
+        <span class="skill-pill">Brochure & Flyer</span>
+        <span class="skill-pill">T-Shirt Design</span>
+        <span class="skill-pill">Packaging Design</span>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3><div class="cat-icon">📢</div> Digital Marketing</h3>
+      <div class="skill-list">
+        <span class="skill-pill hot">Facebook Ads</span>
+        <span class="skill-pill hot">Google Ads</span>
+        <span class="skill-pill">Instagram Marketing</span>
+        <span class="skill-pill">LinkedIn Marketing</span>
+        <span class="skill-pill">YouTube SEO</span>
+        <span class="skill-pill">Pinterest Marketing</span>
+        <span class="skill-pill">Email Marketing</span>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3><div class="cat-icon">🔍</div> SEO & Content</h3>
+      <div class="skill-list">
+        <span class="skill-pill hot">On-Page SEO</span>
+        <span class="skill-pill hot">Off-Page SEO</span>
+        <span class="skill-pill">Technical SEO</span>
+        <span class="skill-pill">Keyword Research</span>
+        <span class="skill-pill">Content Writing (AI)</span>
+        <span class="skill-pill">Local SEO</span>
+        <span class="skill-pill">Google Analytics</span>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3><div class="cat-icon">🤖</div> AI & Tools</h3>
+      <div class="skill-list">
+        <span class="skill-pill hot">ChatGPT / Gemini</span>
+        <span class="skill-pill">MidJourney</span>
+        <span class="skill-pill">Canva AI</span>
+        <span class="skill-pill">Adobe Firefly</span>
+        <span class="skill-pill">CapCut AI</span>
+        <span class="skill-pill">ElevenLabs</span>
+        <span class="skill-pill">Prompt Engineering</span>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3><div class="cat-icon">💼</div> Freelancing</h3>
+      <div class="skill-list">
+        <span class="skill-pill hot">Fiverr</span>
+        <span class="skill-pill hot">Upwork</span>
+        <span class="skill-pill">Freelancer.com</span>
+        <span class="skill-pill">Lead Generation</span>
+        <span class="skill-pill">Client Communication</span>
+        <span class="skill-pill">Proposal Writing</span>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3><div class="cat-icon">🌐</div> Web & Video</h3>
+      <div class="skill-list">
+        <span class="skill-pill hot">WordPress</span>
+        <span class="skill-pill">WooCommerce</span>
+        <span class="skill-pill">Elementor</span>
+        <span class="skill-pill">Video Editing</span>
+        <span class="skill-pill">Filmora</span>
+        <span class="skill-pill">CapCut</span>
+        <span class="skill-pill">MS Office</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
